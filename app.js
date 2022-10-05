@@ -32,12 +32,21 @@ function getDiceHtml(diceCount) {
     }).join('');
 }
 
-function renderCharacter(data){
-    const {elementId, name, avatar, health, diceCount} = data;
 
-    // Invoking the getDiceHtml() passing to it the diceCount of the target obj
-    const diceHtml = getDiceHtml(diceCount);
-    document.getElementById(elementId).innerHTML = 
+function Character(data) {
+    this.elementId = data.elementId;
+    this.name = data.name;
+    this.avatar = data.avatar;
+    this.health = data.health;
+    this.diceCount = data.diceCount;
+
+    this.gitCharacterHtml = function() {
+        const {elementId, name, avatar, health, diceCount} = this;
+
+        // Invoking the getDiceHtml() passing to it the diceCount of the target obj
+        const diceHtml = getDiceHtml(diceCount);
+
+        document.getElementById(elementId).innerHTML = 
         `<div class="character-card">
             <h4 class="name"> ${name} </h4>
             <img class="avatar" src="${avatar}"/>
@@ -46,6 +55,11 @@ function renderCharacter(data){
                 ${diceHtml}
             </div>
         </div>`;
+    }
 }
-renderCharacter(hero);
-renderCharacter(monster);
+
+const wizard = new Character(hero);
+wizard.gitCharacterHtml();
+
+const orc = new Character(monster);
+orc.gitCharacterHtml();
