@@ -34,6 +34,7 @@ function getDiceHtml(diceCount) {
 
 
 function Character(data) {
+    // I made copy of my object 'data' to 'this', which is my current object
     Object.assign(this, data);
 
     this.gitCharacterHtml = function() {
