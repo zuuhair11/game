@@ -15,6 +15,14 @@ function Character(data) {
         }).join('');
     }
 
+    this.takeDamage = function(attackScoreArray) {
+        const totalAttackScore = attackScoreArray.reduce(function(total, currentNumber) {
+            return total + currentNumber;
+        });
+
+        this.health -= totalAttackScore;
+    }
+
     this.gitCharacterHtml = function() {
         const {elementId, name, avatar, health, diceCount} = this;
 
