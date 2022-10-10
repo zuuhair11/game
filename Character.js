@@ -1,6 +1,5 @@
-import {getDiceRollArray, getDicePlaceholerHtml} from './utils.js';
+import {getDiceRollArray, getDicePlaceholerHtml, getPercentage} from './utils.js';
 
-const getPercentage = ( remainingHealth, maximumHealth ) => (remainingHealth / maximumHealth) * 100;
 
 function Character(data) {
     // I made copy of my object 'data' to 'this', which is my current object
