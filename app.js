@@ -50,5 +50,4 @@ document.getElementById('attack-button').addEventListener('click', attack);
 
 const wizard = new Character(characterData.hero);
 let monster = getNewMonster();
-console.log(monster);
 render();

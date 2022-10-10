@@ -1,6 +1,5 @@
 import {getDiceRollArray, getDicePlaceholerHtml, getPercentage} from './utils.js';
 
-
 function Character(data) {
     // I made copy of my object 'data' to 'this', which is my current object
     Object.assign(this, data);
