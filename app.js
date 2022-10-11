@@ -5,7 +5,7 @@ let monstersArray = ["orc", "demon", "goblin"];
 
 function getNewMonster() {
     const nextMonsterData = characterData[monstersArray.shift()];
-    // If there are no more monsters in the array 
+    // If there are no more monsters in the array
     // getNewMonster should return an empty object {}.
     // Otherwise returns a new instance of Character.
     return nextMonsterData ? new Character(nextMonsterData) : {};
@@ -19,15 +19,15 @@ function attack() {
     monster.takeDamage(wizard.currentDiceScore);
 
     render();
-    
+
     if(wizard.dead || monster.dead) {
         endGame();
     }
 }
 
 function endGame() {
-    const endMessage = wizard.health === 0 && monster.health === 0 ? 'No victors - all creatures are dead' 
-        : wizard.health > 0 ? 'The Wizard Wins' 
+    const endMessage = wizard.health === 0 && monster.health === 0 ? 'No victors - all creatures are dead'
+        : wizard.health > 0 ? 'The Wizard Wins'
         : 'The Orc is Victorious';
 
     const endEmoji = wizard.health > 0 ? '🔮' : '☠️';
