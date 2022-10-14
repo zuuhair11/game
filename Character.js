@@ -5,14 +5,14 @@ function Character(data) {
     Object.assign(this, data);
 
     // This one gonna return <div class="placeholder-dice"></div>
-    this.diceArray = getDicePlaceholerHtml(this.diceCount);
+    this.diceHtml = getDicePlaceholerHtml(this.diceCount);
 
     // Setting the max health when the game started
     this.maxHealth = this.health;
 
-    this.getDiceHtml = function() {
+    this.setDiceHtml = function() {
         this.currentDiceScore = getDiceRollArray(this.diceCount);
-        this.diceArray = this.currentDiceScore.map( num =>
+        this.diceHtml = this.currentDiceScore.map( num =>
             `<div class="dice">${num}</div>`).join('');
     }
 
@@ -39,7 +39,7 @@ function Character(data) {
     }
 
     this.gitCharacterHtml = function() {
-        const {elementId, name, avatar, health, diceCount} = this;
+        const {elementId, name, avatar, health, diceCount, diceHtml} = this;
         const healthBar = this.getHealthBarHtml();
 
         return `
@@ -49,7 +49,7 @@ function Character(data) {
                 <p class="health">health: <b> ${health}</b></p>
                 ${healthBar}
                 <div class="dice-container">
-                    ${this.diceArray}
+                    ${diceHtml}
                 </div>
             </div>`;
     }
