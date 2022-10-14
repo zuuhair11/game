@@ -1,22 +1,23 @@
 import {getDiceRollArray, getDicePlaceholerHtml, getPercentage} from './utils.js';
 
-function Character(data) {
-    // I made copy of my object 'data' to 'this', which is my current object
-    Object.assign(this, data);
+class Character {
+    constructor(data) {
+        // I made copy of my object 'data' to 'this', which is my current object
+        Object.assign(this, data);
+        // This one gonna return <div class="placeholder-dice"></div>
+        this.diceHtml = getDicePlaceholerHtml(this.diceCount);
 
-    // This one gonna return <div class="placeholder-dice"></div>
-    this.diceHtml = getDicePlaceholerHtml(this.diceCount);
+        // Setting the max health when the game started
+        this.maxHealth = this.health;
+    }    
 
-    // Setting the max health when the game started
-    this.maxHealth = this.health;
-
-    this.setDiceHtml = function() {
+    setDiceHtml () {
         this.currentDiceScore = getDiceRollArray(this.diceCount);
         this.diceHtml = this.currentDiceScore.map( num =>
             `<div class="dice">${num}</div>`).join('');
     }
 
-    this.takeDamage = function(attackScoreArray) {
+    takeDamage (attackScoreArray) {
         const totalAttackScore = attackScoreArray.reduce(( total, currentNumber ) => total + currentNumber);
 
         this.health -= totalAttackScore;
@@ -27,7 +28,7 @@ function Character(data) {
         }
     }
 
-    this.getHealthBarHtml = function() {
+    getHealthBarHtml () {
         const percent = getPercentage(this.health, this.maxHealth);
         return `
             <div class="health-bar-outer">
@@ -38,7 +39,7 @@ function Character(data) {
         `;
     }
 
-    this.gitCharacterHtml = function() {
+    gitCharacterHtml () {
         const {elementId, name, avatar, health, diceCount, diceHtml} = this;
         const healthBar = this.getHealthBarHtml();
 
